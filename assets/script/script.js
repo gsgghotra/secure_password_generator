@@ -132,7 +132,7 @@ function getPasswordOptions() {
   }
 
   //Ask passwords character length 
-  passOptions.passwordLength = prompt("How many characters would you like your password to be?");
+  passOptions.passwordLength = prompt("How many characters would you like your password to be? (between 8 to 128)");
 
   if(passOptions.passwordLength){ // If cancelled, don't check of length 
     //Check if the user input is valid - Function is declared above
