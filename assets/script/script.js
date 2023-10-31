@@ -146,6 +146,14 @@ function getPasswordOptions() {
   }
 }
 
+//
+function multipleRandom(arr, num) {
+
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num);
+}
+
+
 // Function for getting a random element from an array
 function getRandom(options) {
   //This function gets the length of password and options
@@ -153,10 +161,16 @@ function getRandom(options) {
   let arrayofOptions = [options.lowercase, options.uppercase, options.numeric, options.specialChar];
     //get the length of character types (ex: 4) 
   let countofOptions = arrayofOptions.filter(Boolean).length;
-  //Divide the password length with no of character type options
-  console.log(options.passwordLength / countofOptions);
-    
-  //  20/4 = 5 // Math.celi -> confirm that total character length is equal to 20 again after rounding up
+  //Divide the password length with no of character type options - //Round up if result isn't integer
+  let characterNeeded = Math.round(options.passwordLength / countofOptions);
+
+  //Get Randomisers
+  if(options.lowercase){
+    console.log(multipleRandom(lowerCasedCharacters, characterNeeded));
+  }
+
+
+  //confirm that total character length is equal to 20 again after rounding up
     
   // when I concat those arrays together, randomise them again
 
@@ -164,16 +178,12 @@ function getRandom(options) {
 
 // Function to generate password with user input
 function generatePassword() {
-
-  return getRandom(getPasswordOptions());
   //The return of getPasswordOptions is the argumenta of getRandom 
-
+  return getRandom(getPasswordOptions());
+  
   //Return the password here
   return options.passwordLength;
 }
-
-
-/// DONT TOUCH THE CODE BELOW
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
