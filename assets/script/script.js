@@ -103,7 +103,23 @@ function checkPasswordLength(length){
   }
 }
 
+//Function to ask Character types
+function askCharacterTypes(passOptions){
+  //First prompt
+  passOptions.lowercase = confirm("Would you like to include lowercase characters in your passsword?");
+  passOptions.uppercase = confirm("Would you like to include uppercase characters in your passsword?");
+  passOptions.numeric = confirm("Would you like to include numeric characters in your passsword?");
+  passOptions.specialChar = confirm("Would you like to include Special characters ($@%&*, etc) in your passsword?");
 
+  //Check if atleast one character is selected
+  if (passOptions.lowercase || passOptions.uppercase || passOptions.numeric || passOptions.specialChar){
+    return passOptions;
+  } else {
+    alert("Please select atleast one character type.");
+    return false;
+  }
+  
+}
 
 // Function to prompt user for password options
 function getPasswordOptions() {
