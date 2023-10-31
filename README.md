@@ -1,7 +1,7 @@
 # Secure Password Generator
 This website can help you with generating secure passwords. Once clicked on the '**Generate Password**' button, it will ask for prompts to gather information about password from the user.
 
-- **Visit** the deployed webapp at : 
+- **Visit** the deployed webapp at : https://gsgghotra.github.io/secure_password_generator/
 
 
 ## Table of Contents
