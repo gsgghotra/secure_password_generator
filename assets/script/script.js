@@ -147,28 +147,29 @@ function getPasswordOptions() {
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-  //This function gets an array of mixed choices
+function getRandom(options) {
+  //This function gets the length of password and options
+  //create an array of options
+  let arrayofOptions = [options.lowercase, options.uppercase, options.numeric, options.specialChar];
+    //get the length of character types (ex: 4) 
+  let countofOptions = arrayofOptions.filter(Boolean).length;
+  //Divide the password length with no of character type options
+  console.log(options.passwordLength / countofOptions);
+    
+  //  20/4 = 5 // Math.celi -> confirm that total character length is equal to 20 again after rounding up
+    
+  // when I concat those arrays together, randomise them again
+
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  let passwordOptions = getPasswordOptions();
-  //This variable has the password length and the character options
-  
 
-  //if password length is 20 charcters
-      //passwordOptions.passwordlength
-      //Create a new variable for genrating poassword
+  return getRandom(getPasswordOptions());
+  //The return of getPasswordOptions is the argumenta of getRandom 
 
-  //get the length of character types (ex: 4) 
-    //passwordOptions.passwordlength
-
-  //  20/4 = 5 // Math.celi -> confirm that total character length is equal to 20 again after rounding up
-
-  // when I concat those arrays together, randomise them again
-
-
+  //Return the password here
+  return options.passwordLength;
 }
 
 
