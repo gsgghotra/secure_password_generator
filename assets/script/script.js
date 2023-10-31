@@ -88,11 +88,22 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-
-// Function for getting a random element from an array
-function getRandom(arr) {
-  //This function gets an array of mixed choices
+//Function to check characters length
+function checkPasswordLength(length){
+  //Check if its valid and return boolean
+  if(length < 8){
+    alert("Password must be atleast 8 characters long.");
+    return false;
+  } else if (length > 128){
+    alert("Password must be less than 128 characters.");
+    return false;
+  } else {
+    //alert("Test Pass");
+    return true;
+  }
 }
+
+
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -117,6 +128,11 @@ function getPasswordOptions() {
       //console.log("Options" + JSON.stringify(passOptions));
     }  
   }
+}
+
+// Function for getting a random element from an array
+function getRandom(arr) {
+  //This function gets an array of mixed choices
 }
 
 // Function to generate password with user input
