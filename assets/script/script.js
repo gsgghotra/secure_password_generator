@@ -95,7 +95,7 @@ function checkPasswordLength(length){
     alert("Password must be atleast 8 characters long.");
     return false;
   } else if (length > 128){
-    alert("Password must be less than 128 characters.");
+    alert("Password must be less than or equal to 128 characters.");
     return false;
   } else {
     //alert("Test Pass");
@@ -134,19 +134,22 @@ function getPasswordOptions() {
   //Ask passwords character length 
   passOptions.passwordLength = prompt("How many characters would you like your password to be?");
 
-  if(passOptions.passwordLength){
-  
-  //Check if the user input is valid - Function is declared above
-  if (checkPasswordLength(passOptions.passwordLength)){
-    // IF password length is valid
-    //Ask for Character types
-    if(askCharacterTypes(passOptions) !== false){ // If false is not returned from characters
-      // Return the final password option object to generate password;
-      return passOptions;
-      //console.log("Options" + JSON.stringify(passOptions));
-    }  
+  if(passOptions.passwordLength){ // If cancelled, don't check of length 
+    //Check if the user input is valid - Function is declared above
+    if (checkPasswordLength(passOptions.passwordLength)){
+      // IF password length is valid
+      //Ask for Character types
+      if(askCharacterTypes(passOptions) !== false){ // If false is not returned from characters
+        // Return the final password option object to generate password;
+        return passOptions;
+        //console.log("Options" + JSON.stringify(passOptions));
+      }  
+    } else {
+      return false;
+    }
+  } else {
+    return false;
   }
-}
 }
 
 //Function to get multiple random numbers from each array
@@ -171,28 +174,27 @@ function getRandom(options) {
 
   //Get Randomisers
   if(options.lowercase){
-    //Push the random numbers into array
+    //Push the lowercase random numbers into array
     randomHolder.push(multipleRandom(lowerCasedCharacters, characterNeeded));
   }
   if(options.uppercase){
-    //Push the random numbers into array
+    //Push the uppercase random numbers into array
     randomHolder.push(multipleRandom(upperCasedCharacters, characterNeeded));
   }
   if(options.numeric){
-    //Push the random numbers into array
+    //Push the numeric random numbers into array
     randomHolder.push(multipleRandom(numericCharacters, characterNeeded));
   }
   if(options.specialChar){
-    //Push the random numbers into array
+    //Push the special charcters random numbers into array
     randomHolder.push(multipleRandom(specialCharacters, characterNeeded));
   }
-
 
   //Shuffle the array to generate random password
   //also confirm that total character length is equal to 20 again after rounding up
   let randomPassword = multipleRandom(randomHolder.flat(), options.passwordLength);
 
-  //Remove commas by using
+  //Remove commas by using join
   randomPassword = randomPassword.join("")
 
   // when I concat those arrays together, randomise them again
@@ -201,11 +203,17 @@ function getRandom(options) {
 
 // Function to generate password with user input
 function generatePassword() {
-  //The return of getPasswordOptions is the argumenta of getRandom 
-  return getRandom(getPasswordOptions());
+  //The return of getPasswordOptions is the argumenta of getRandom
+  let userOptions = getPasswordOptions();
+  let finalPassword;
+  if (userOptions){
+    finalPassword = getRandom(userOptions);
+  }
+
+  if(!finalPassword) {return "Please try again later";}
   
   //Return the password here
-  return options.passwordLength;
+  return finalPassword;
 }
 
 // Get references to the #generate element
