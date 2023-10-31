@@ -134,16 +134,19 @@ function getPasswordOptions() {
   //Ask passwords character length 
   passOptions.passwordLength = prompt("How many characters would you like your password to be?");
 
+  if(passOptions.passwordLength){
+  
   //Check if the user input is valid - Function is declared above
   if (checkPasswordLength(passOptions.passwordLength)){
-    // IF password lemgth is valid
+    // IF password length is valid
     //Ask for Character types
-    if(askCharacterTypes(passOptions) !== false){ // If false is not returned
+    if(askCharacterTypes(passOptions) !== false){ // If false is not returned from characters
       // Return the final password option object to generate password;
       return passOptions;
       //console.log("Options" + JSON.stringify(passOptions));
     }  
   }
+}
 }
 
 //Function to get multiple random numbers from each array
@@ -212,7 +215,6 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
   passwordText.value = password;
 }
 
