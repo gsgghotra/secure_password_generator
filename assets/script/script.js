@@ -94,9 +94,34 @@ function getRandom(arr) {
   //This function gets an array of mixed choices
 }
 
+// Function to prompt user for password options
+function getPasswordOptions() {
+  let passOptions = {
+    lowercase: false,
+    uppercase: false,
+    numeric: false,
+    specialChar: false,
+    passwordLength: 0
+  }
+
+  //Ask passwords character length 
+  passOptions.passwordLength = prompt("How many characters would you like your password to be?");
+
+  //Check if the user input is valid - Function is declared above
+  if (checkPasswordLength(passOptions.passwordLength)){
+    // IF password lemgth is valid
+    //Ask for Character types
+    if(askCharacterTypes(passOptions) !== false){ // If false is not returned
+      // Return the final password option object to generate password;
+      return passOptions;
+      //console.log("Options" + JSON.stringify(passOptions));
+    }  
+  }
+}
+
 // Function to generate password with user input
 function generatePassword() {
-  //let passwordOptions = getPasswordOptions();
+  let passwordOptions = getPasswordOptions();
   //This variable has the password length and the character options
   
 
