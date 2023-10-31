@@ -189,7 +189,8 @@ function getRandom(options) {
   //also confirm that total character length is equal to 20 again after rounding up
   let randomPassword = multipleRandom(randomHolder.flat(), options.passwordLength);
 
-
+  //Remove commas by using
+  randomPassword = randomPassword.join("")
 
   // when I concat those arrays together, randomise them again
   return randomPassword;
